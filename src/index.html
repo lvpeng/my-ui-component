@@ -34,14 +34,20 @@
           isExpand: false,
         }
       },
+      methods: {
+        handleClick: function(val) {
+          console.log(val)
+          this.isExpand = !this.isExpand;
+        }
+      },
       computed: {
         tipText: function(){
           return !this.isExpand ? 'Show Detail' : 'Hide Detail'
         }
       },
       template: `
-                  <li>
-                    <p>{{title}} <a @click='isExpand=!isExpand' href='#'>{{tipText}}</a></p>
+                  <li @click='handleClick(id)'>
+                    <p>{{title}} <a href='#'>{{tipText}}</a></p>
                     <p v-show='isExpand'><slot></slot></p>
                   </li>
                 `
