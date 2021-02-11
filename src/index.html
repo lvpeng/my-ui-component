@@ -14,8 +14,7 @@
 <body>
   <div id="app">
     <collapse>
-        <collapse-item v-for="(item, idx) in items" :key="idx">
-          <span slot="title">{{item.title}}</span>
+        <collapse-item v-for="(item, idx) in items" :key="idx" :title="item.title">
            {{item.detail}}
         </collapse-item>
     </collapse>
@@ -23,6 +22,9 @@
  
   <script>
     Vue.component('collapse-item', {
+      props: {
+        title: String
+      },
       data: function() {
         return {
           isExpand: false,
@@ -35,7 +37,7 @@
       },
       template: `
                   <li>
-                    <p><slot name='title'></slot> <a @click='isExpand=!isExpand' href='#'>{{tipText}}</a></p>
+                    <p>{{title}} <a @click='isExpand=!isExpand' href='#'>{{tipText}}</a></p>
                     <p v-show='isExpand'><slot></slot></p>
                   </li>
                 `
