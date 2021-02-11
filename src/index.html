@@ -14,7 +14,7 @@
 <body>
   <div id="app">
     <collapse>
-        <collapse-item v-for="(item, idx) in items" :key="idx" :title="item.title">
+        <collapse-item v-for="(item, idx) in items" :key="item.id" :title="item.title" :id="item.id">
            {{item.detail}}
         </collapse-item>
     </collapse>
@@ -23,7 +23,11 @@
   <script>
     Vue.component('collapse-item', {
       props: {
-        title: String
+        title: String,
+        id: {
+          type: Number,
+          required: true
+        }
       },
       data: function() {
         return {
@@ -54,10 +58,12 @@
       data: {
         items: [
             {
+              id: 1,
               title:'一致性 Consistency',
               detail:' 现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念；在界面中一致：所有的元素和结构需保持一致，比如：设计样式、图标和文本、元素的位置等。'
             },
             {
+              id:2,
               title:'反馈 Feedback',
               detail:' 控制反馈：通过界面样式和交互动效让用户可以清晰的感知自己的操作；页面反馈：操作后，通过页面元素的变化清晰地展现当前状态。'
             }
